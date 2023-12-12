@@ -1,0 +1,27 @@
+% Read the audio signal
+[data, fs] = audioread('Sample musik konser UAS.wav'); 
+% Parameters for Gaussian noise
+meanValue = 0;               % Mean of the Gaussian noise
+standardDeviation = 0.1;     % Standard deviation of the Gaussian noise
+% Generate Gaussian noise
+noise = meanValue + standardDeviation * randn(size(data));
+% Add Gaussian noise to the audio signal
+noisyData = data + noise;
+% Plot the original audio signal and the noisy signal
+time = (0:length(data)-1)/fs;  % Time vector
+subplot(2, 1, 1);
+plot(time, data);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title('Original Audio Signal');
+subplot(2, 1, 2);
+plot(time, noisyData);
+xlabel('Time (s)');
+ylabel('Amplitude');
+title('Audio Signal with Gaussian Noise');
+% Adjust the plot limits for better visualization
+ylim([-1, 1]);
+% Play the original audio signal
+sound(data, fs);
+% Play the noisy audio signal
+sound(noisyData, fs);
