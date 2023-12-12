@@ -1,0 +1,16 @@
+% Data sinyal frekuensi yang diketahui
+Fs = 44100; % Frekuensi sampel
+f = 10; % Frekuensi sinyal (Hz)
+t = 0:1/Fs:1; % Waktu
+X = exp(1i*2*pi*f*t); % Data sinyal frekuensi
+
+
+% Transformasi balik Fourier
+x_rekonstruksi = ifft(X);
+
+
+% Plot sinyal waktu hasil rekonstruksi
+plot(t, real(x_rekonstruksi));
+title('Sinyal Hasil Rekonstruksi');
+xlabel('Waktu (s)');
+ylabel('Amplitudo');
